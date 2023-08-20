@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>260151982706-olfibdqgqn88u96qmnir2tn91t4hhmrs.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.260151982706-olfibdqgqn88u96qmnir2tn91t4hhmrs</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBnILyF_5CJwq1ZzRCYv5maz2LfIt5xkEc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>260151982706</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.advanceViva2VotingApp</string>
+	<key>PROJECT_ID</key>
+	<string>advance-viva2-voting-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>advance-viva2-voting-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:260151982706:ios:846b8e17a863b9c2ede0eb</string>
+</dict>
+</plist>

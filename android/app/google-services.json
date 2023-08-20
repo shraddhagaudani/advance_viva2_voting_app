@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "260151982706",
+    "project_id": "advance-viva2-voting-app",
+    "storage_bucket": "advance-viva2-voting-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260151982706:android:52241703755a950dede0eb",
+        "android_client_info": {
+          "package_name": "com.example.advance_viva2_voting_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260151982706-1b9j74ink7mi4609gn39oobm8mqvpvma.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.advance_viva2_voting_app",
+            "certificate_hash": "14a5ca4101c7e265c637ae5f50790430a1cc982d"
+          }
+        },
+        {
+          "client_id": "260151982706-afs4f043bpt5q2tn9545t8eaulpbp1du.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGbm6j_iVbQ167ntWfvkOBRsyzUy13rp0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260151982706-afs4f043bpt5q2tn9545t8eaulpbp1du.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "260151982706-olfibdqgqn88u96qmnir2tn91t4hhmrs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.advanceViva2VotingApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
