@@ -1,7 +1,4 @@
 
-https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/0d1ea407-78ae-4da6-a69e-38b89aa305c5
-
-https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/a34fa4fd-7703-4bfc-85c2-3e44fb2a3672
 # advance_viva2_voting_app
 
 A new Flutter project.
@@ -32,6 +29,8 @@ Project Output:
   <img align= "left" src="https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/dabcac72-8ac3-4acf-935a-b7d20557f9e6" width="220px">
   <img align= "left" src="https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/8bd49f72-e3b9-4306-ac7e-e13398507736" width="220px">
 
+
+https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/0d1ea407-78ae-4da6-a69e-38b89aa305c5
 
 
 ## Getting Started
