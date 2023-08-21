@@ -13,6 +13,7 @@ class Login_page extends StatefulWidget {
 
 class _Login_pageState extends State<Login_page> {
   LogINOutController logINOutController = Get.put(LogINOutController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +25,13 @@ class _Login_pageState extends State<Login_page> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Text(
+                "Sign in with google",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               OutlinedButton.icon(
                 onPressed: () async {
                   Map<String, dynamic> data = await FireBaseAuthHelper
@@ -32,13 +40,16 @@ class _Login_pageState extends State<Login_page> {
 
                   if (data['user'] != null) {
                     Get.snackbar(
-                        "SUCCESSFULLY", "Login Successfully with Google😊..",
-                        backgroundColor: Colors.green);
+                      "SUCCESSFULLY",
+                      "Login Successfully with Google😊..",
+                      backgroundColor: Colors.green,
+                      snackPosition: SnackPosition.BOTTOM,
+                    );
                     Get.offNamed('information_page', arguments: data['user']);
                     logINOutController.logInOutTrueValue();
                   } else {
                     Get.snackbar("FAILURE", data['msg'],
-                        backgroundColor: Colors.red);
+                        backgroundColor: Colors.red,);
                   }
                 },
                 icon: const Icon(Icons.g_mobiledata),

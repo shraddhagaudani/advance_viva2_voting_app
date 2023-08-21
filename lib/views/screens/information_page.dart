@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Information_page extends StatefulWidget {
   const Information_page({super.key});
@@ -24,21 +25,20 @@ class _Information_pageState extends State<Information_page> {
       appBar: AppBar(
         title: const Text("Information page"),
       ),
-      body: Container(
+      body: Container(alignment: Alignment.center,
         padding: EdgeInsets.all(16),
         child: Form(
           key: formkey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 50,
-              ),
-              const Text(
-                "Fill the form",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30),
+
+               Text(
+                "Enter your Age",
+                style: GoogleFonts.aBeeZee(fontWeight: FontWeight.w500,fontSize: 30),
               ),
               const SizedBox(
-                height: 40,
+                height: 20,
               ),
               TextFormField(
                 controller: ageController,
@@ -67,7 +67,6 @@ class _Information_pageState extends State<Information_page> {
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
                     formkey.currentState!.save();
-
                     if (age >= 18) {
                       Get.snackbar(
                         "You can vote",
@@ -75,7 +74,9 @@ class _Information_pageState extends State<Information_page> {
                         backgroundColor: Colors.green,
                         snackPosition: SnackPosition.BOTTOM,
                       );
-                     ageController.clear();
+                     setState(() {
+                       ageController.clear();
+                     });
                       Get.offAllNamed('/',arguments: user);
                     } else {
                       Get.snackbar(

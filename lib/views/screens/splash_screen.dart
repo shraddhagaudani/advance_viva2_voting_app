@@ -23,7 +23,7 @@ class _Splash_screenState extends State<Splash_screen> {
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(seconds: 2)).then(
+    Future.delayed(const Duration(seconds: 5)).then(
       (value) => (introAccessController.introAccess_Model.introaccess)
           ? (logINOutController.loginInOutModel.islogin)
               ? Get.offAndToNamed(

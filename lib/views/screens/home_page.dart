@@ -88,42 +88,7 @@ class _Home_pageState extends State<Home_page> {
             const SizedBox(
               height: 10,
             ),
-            (user!.isAnonymous)
-                ? const ListTile()
-                : ListTile(
-                    onTap: () {
-                      Get.toNamed('/update_emailpage');
-                    },
-                    title: const Text(
-                      "Update E-mail",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    trailing: const Icon(Icons.email_outlined),
-                  ),
-            (user!.isAnonymous)
-                ? const ListTile()
-                : ListTile(
-                    onTap: () {
-                      Get.toNamed('/update_passwordpage');
-                    },
-                    title: const Text(
-                      "Update Password",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    trailing: const Icon(Icons.password),
-                  ),
-            (user!.isAnonymous)
-                ? const ListTile()
-                : ListTile(
-                    onTap: () {
-                      Get.toNamed('/delete_accountpage');
-                    },
-                    title: const Text(
-                      "Delete Account",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
-                    trailing: const Icon(Icons.delete),
-                  ),
+
             ListTile(
               title: const Text(
                 "Theme Mode",
