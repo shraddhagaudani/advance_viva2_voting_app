@@ -33,14 +33,6 @@ Project Output:
   <img align= "left" src="https://github.com/shraddhagaudani/advance_viva2_voting_app/assets/122030732/8bd49f72-e3b9-4306-ac7e-e13398507736" width="220px">
 
 
- 
-
-
-
-
-
-
-
 
 ## Getting Started
 
