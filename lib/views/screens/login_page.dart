@@ -1,3 +1,4 @@
+import 'package:advance_viva2_voting_app/controllers/login_out_controllers.dart';
 import 'package:advance_viva2_voting_app/helper/firebaseauth_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class Login_page extends StatefulWidget {
 }
 
 class _Login_pageState extends State<Login_page> {
+  LogINOutController logINOutController = Get.put(LogINOutController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,15 +34,15 @@ class _Login_pageState extends State<Login_page> {
                     Get.snackbar(
                         "SUCCESSFULLY", "Login Successfully with Google😊..",
                         backgroundColor: Colors.green);
-                    Get.offNamed('/', arguments: data['user']);
-                    // logINOutController.logInOutTrueValue();
+                    Get.offNamed('information_page', arguments: data['user']);
+                    logINOutController.logInOutTrueValue();
                   } else {
                     Get.snackbar("FAILURE", data['msg'],
                         backgroundColor: Colors.red);
                   }
                 },
-                icon: Icon(Icons.g_mobiledata),
-                label: Text("Sign in with google"),
+                icon: const Icon(Icons.g_mobiledata),
+                label: const Text("Sign in with google"),
               ),
             ],
           ),

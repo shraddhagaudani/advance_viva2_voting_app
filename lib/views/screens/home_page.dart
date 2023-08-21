@@ -1,3 +1,4 @@
+import 'package:advance_viva2_voting_app/controllers/login_out_controllers.dart';
 import 'package:advance_viva2_voting_app/controllers/theme_controller.dart';
 import 'package:advance_viva2_voting_app/helper/firebaseauth_helper.dart';
 import 'package:advance_viva2_voting_app/helper/firestore_helper.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({super.key});
@@ -22,9 +24,13 @@ class _Home_pageState extends State<Home_page> {
   ThemeController themeController = Get.put(ThemeController());
   User? user = Get.arguments as User?;
 
+  LogINOutController logINOutController = Get.put(LogINOutController());
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    // String args =  Get.arguments as String;
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       drawer: Drawer(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -50,6 +56,7 @@ class _Home_pageState extends State<Home_page> {
             //     : (user.displayName == null)
             //         ? const Text("")
             //         : Text("${user.displayName}"),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -77,21 +84,7 @@ class _Home_pageState extends State<Home_page> {
                 Text((user!.isAnonymous) ? "" : "${user!.email}")
               ],
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text((user!.isAnonymous)
-                    ? ""
-                    : (user?.displayName == null)
-                        ? ""
-                        : "PhoneNumber:  "),
-                Text((user!.isAnonymous)
-                    ? ""
-                    : (user?.phoneNumber == null)
-                        ? ""
-                        : "${user!.phoneNumber}"),
-              ],
-            ),
+
             const SizedBox(
               height: 10,
             ),
@@ -153,39 +146,258 @@ class _Home_pageState extends State<Home_page> {
         ),
       ),
       appBar: AppBar(
-        title: Text("Home page"),
+        title: const Text("Voter App"),
         actions: [
           IconButton(
             onPressed: () async {
               await FireBaseAuthHelper.fireBaseAuthHelper.signOut();
 
               Get.offNamed('/login_page');
+              logINOutController.logInOutTrueValue();
             },
-            icon: Icon(CupertinoIcons.power),
+            icon: const Icon(CupertinoIcons.power),
           ),
         ],
       ),
-      body: StreamBuilder(
-          stream: FireStoreHelper.fireStoreHelper.fetchAllUsers(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              Text("ERROR:${snapshot.hasError}");
-            } else if (snapshot.hasData) {
-              QuerySnapshot<Map<String, dynamic>>? data = snapshot.data;
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(
+            height: 80,
+          ),
+          const Text(
+            "LIVE VOTE",
+            style:
+               TextStyle(fontSize: 30,fontWeight: FontWeight.w500)
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+              stream: FireStoreHelper.fireStoreHelper.fetchAllUsers(),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  Text("ERROR:${snapshot.hasError}");
+                } else if (snapshot.hasData) {
+                  QuerySnapshot<Map<String, dynamic>>? data = snapshot.data;
 
-              List allDocs = (data == null) ? [] : data.docs;
-              // List allDocs = (data == null) ? [] : data.docs;
-              print(allDocs);
-              return ListView.builder(
-                  itemCount: allDocs.length, itemBuilder: (context, i) {});
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }),
+                  List allDocs = (data == null) ? [] : data.docs;
+                  // List allDocs = (data == null) ? [] : data.docs;
+                  print(allDocs);
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: allDocs.length,
+                      itemBuilder: (context, i) {
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Row(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 90,
+                                    width: 145,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.green.withOpacity(0.2),
+                                      border: Border.all(
+                                          color: Colors.black12, width: 2),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "BJP :",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                        Text(
+                                          " ${allDocs[i]['bjp']}",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    height: 90,
+                                    width: 145,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.green.withOpacity(0.2),
+                                      border: Border.all(
+                                          color: Colors.black12, width: 2),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "CONGRESS :",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                        Text(
+                                          " ${allDocs[i]['congress']}",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: [
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: 90,
+                                    width: 145,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.green.withOpacity(0.2),
+                                      border: Border.all(
+                                          color: Colors.black12, width: 2),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "AAP :",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                        Text(
+                                          " ${allDocs[i]['aap']}",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 15,
+                                  ),
+                                  Container(
+                                    height: 90,
+                                    width: 145,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.green.withOpacity(0.2),
+                                      border: Border.all(
+                                          color: Colors.black12, width: 2),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "OTHERS :",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        ),
+                                        Text(
+                                          " ${allDocs[i]['others']}",
+                                          style: GoogleFonts.aBeeZee(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                }
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }),
+        ],
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: insertUser,
-        child: const Icon(CupertinoIcons.plus),
+        onPressed: () {
+          Get.dialog(
+            AlertDialog(
+              title: const Text("Vote For Any One"),
+              content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  OutlinedButton(
+                    onPressed: () async {
+                      await FireStoreHelper.fireStoreHelper.voteForBjp();
+
+                      FireStoreHelper.fireStoreHelper.voteValueTrueOrFalse();
+                      Get.back();
+                    },
+                    child: const Text("BJP PARTY"),
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      await FireStoreHelper.fireStoreHelper.voteForCongress();
+                      FireStoreHelper.fireStoreHelper.voteValueTrueOrFalse();
+
+                      Get.back();
+                    },
+                    child: const Text("CONGRESS PARTY"),
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      await FireStoreHelper.fireStoreHelper.voteForAap();
+                      FireStoreHelper.fireStoreHelper.voteValueTrueOrFalse();
+
+                      Get.back();
+                    },
+                    child: const Text("AAP PARTY"),
+                  ),
+                  OutlinedButton(
+                    onPressed: () async {
+                      await FireStoreHelper.fireStoreHelper.voteForOthers();
+                      FireStoreHelper.fireStoreHelper.voteValueTrueOrFalse();
+
+                      Get.back();
+                    },
+                    child: const Text("OTHERS PARTY"),
+                  ),
+                ],
+              ),
+              // actions: [
+              //   Column(
+              //     children: [
+              //       ElevatedButton.icon(
+              //         onPressed: () {},
+              //           label: Text("BJP"),
+              //         icon: Icon(),
+              //       ),
+              //     ],
+              //   )
+              // ],
+            ),
+          );
+        },
+        child: const Icon(Icons.recommend_rounded),
       ),
     );
   }
@@ -212,7 +424,7 @@ class _Home_pageState extends State<Home_page> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               TextFormField(
                 controller: ageController,
@@ -237,18 +449,17 @@ class _Home_pageState extends State<Home_page> {
 
                 // String? token = await FCMHelper.fcmHelper.getDeviceToken();
 
-                FireStoreHelper.fireStoreHelper.insertUserWhileSignIn(data: {
-                  "name": nameController.text,
-                  "age": ageController.text,
-                  "email": user!.email,
-                });
+                // FireStoreHelper.fireStoreHelper.insertUserWhileSignIn(data: {
+                //   "name": nameController.text,
+                //   "age": ageController.text,
+                //   "email": user!.email,
+                // });
 
                 // FireStoreHelper.fireStoreHelper.addUser(data: {
                 //   "name": nameController.text,
                 //     "age": ageController.text,
                 //     "email": user!.email,
                 // });
-
 
                 Get.showSnackbar(
                   const GetSnackBar(
